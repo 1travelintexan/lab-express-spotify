@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/spotify-background.jpeg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 5px;
+  color: rgb(255, 210, 7);
+  font-size: 4rem;
+  text-shadow: 5px 10px 5px rgb(0, 0, 0);
+}
+
+.header-div {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  color: rgb(2, 240, 2);
+  font-size: 5em;
+  margin: 5px 0px 20px 10px;
+  /* text-shadow: 0 0 30px white; */
+  background-color: black;
+  padding: 10px;
+}
+
+#form {
+  width: 70%;
+  height: 70%;
+  background: rgba(0, 0, 0, 0.52);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+#form input {
+  font-size: 2rem;
+  background-color: rgb(250, 227, 196);
+  color: black;
+}
+#form button {
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 2rem;
+  padding: 5px;
+  background-color: rgb(255, 123, 0);
+  color: white;
+  transition: all ease-in-out 0.3s;
+}
+#form button:hover {
+  background-color: rgb(255, 157, 0);
+  box-shadow: 0 0 30px rgb(255, 157, 0);
+  color: black;
+}
+#albums-container {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#albums-div {
+  width: 17rem;
+  height: 17rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(172, 127, 3, 0.603);
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.albums {
+  height: 10rem;
+}
+
+.artist-img {
+  height: 60vh;
+}
+
+.album-link {
+  text-decoration: none;
+  color: azure;
+  font-size: 3rem;
+  background-color: rgb(255, 123, 0);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: all ease-in-out 0.3s;
+}
+
+.album-link:hover {
+  background-color: rgb(255, 157, 0);
+  box-shadow: 0 0 30px rgb(255, 157, 0);
+  color: black;
+}
+
+.track {
+  background-color: rgba(0, 0, 0, 0.507);
+  width: 50%;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  border-radius: 5px;
+  color: rgb(255, 229, 115);
+  text-shadow: 5px 10px 5px rgb(0, 0, 0);
+}
+.track h3 {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+.track h5 {
+  font-size: 1rem;
+}
