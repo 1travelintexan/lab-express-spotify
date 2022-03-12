@@ -1,8 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+
   background-image: url("/images/spotify-background.jpeg");
   background-size: cover;
   display: flex;
@@ -27,7 +26,6 @@ h1 {
   color: rgb(2, 240, 2);
   font-size: 5em;
   margin: 5px 0px 20px 10px;
-  /* text-shadow: 0 0 30px white; */
   background-color: black;
   padding: 10px;
 }
