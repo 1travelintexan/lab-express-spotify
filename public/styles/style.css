@@ -124,3 +124,14 @@ h1 {
 .track h5 {
   font-size: 1rem;
 }
+.preview-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.preview-div h5 {
+  margin-right: 20px;
+}
+audio::-webkit-media-controls-panel {
+  background-color: rgb(255, 174, 0);
+}

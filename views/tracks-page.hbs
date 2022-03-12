@@ -2,6 +2,16 @@
 {{#each tracksArr}}
   <div class="track">
     <h3>{{this.trackNumber}}. {{this.name}}</h3>
+    {{#if this.preview}}
+      <div class="preview-div">
+        <H5>Song Preview:</H5>
+        <audio controls src="{{this.preview}}">
+          Your browser does not support the
+          <code>audio</code>
+          element.
+        </audio>
+      </div>
+    {{/if}}
     <h5>{{this.time}}</h5>
   </div>
 {{/each}}

@@ -72,12 +72,14 @@ app.get("/albums/tracks/:albumId", (req, res) => {
 
   spotifyApi.getAlbumTracks(albumId).then((data) => {
     let items = data.body.items;
-
     items.forEach((elem) => {
       let tracksObj = {};
       tracksObj.name = elem.name;
       tracksObj.trackNumber = elem.track_number;
       tracksObj.time = convertMsToMins(elem.duration_ms);
+      if (elem.preview_url) {
+        tracksObj.preview = elem.preview_url;
+      }
       tracksArr.push(tracksObj);
     });
     res.render("tracks-page", { tracksArr });
