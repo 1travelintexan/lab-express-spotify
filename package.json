@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +17,15 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
+    "express-session": "^1.17.3",
     "hbs": "^4.2.0",
+    "mongoose": "^6.3.6",
+    "morgan": "^1.10.0",
     "spotify-web-api-node": "^5.0.2"
   }
 }
