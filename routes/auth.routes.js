@@ -16,8 +16,6 @@ const bcrypt = require("bcryptjs");
 //     console.log("Something went wrong when retrieving an access token", error)
 //   );
 
-//routes
-
 router.get("/", (req, res) => {
   res.render("index");
 });

@@ -1,11 +1,8 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
-require("dotenv/config");
-
 // ℹ️ Connects to the database
 require("./db");
 
 require("dotenv").config();
+let PORT = process.env.PORT || 3000;
 const hbs = require("hbs");
 const express = require("express");
 const app = express();
@@ -20,8 +17,8 @@ app.use(express.static(__dirname + "/public"));
 const authRoutes = require("./routes/auth.routes");
 app.use(authRoutes);
 
-app.listen(3000, () =>
-  console.log("My Spotify project running on port 3000 🎧 🥁 🎸 🔊")
+app.listen(PORT, () =>
+  console.log(`My Spotify project running on port ${PORT} 🎧 🥁 🎸 🔊`)
 );
 
 module.exports = app;
