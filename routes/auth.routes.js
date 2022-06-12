@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
-
 // const SpotifyWebApi = require("spotify-web-api-node");
 
 // const spotifyApi = new SpotifyWebApi({
@@ -33,15 +32,12 @@ router.post("/signup", async (req, res) => {
   console.log("new user", newUserDB);
   res.redirect("/home");
 });
-
 router.post("/signin", (req, res) => {
   console.log("signin here", req.body);
 });
-
 router.get("/home", (req, res) => {
   res.render("home");
 });
-
 router.get("/artist-search", (req, res) => {
   let searchMusic = req.query.search;
   spotifyApi
@@ -77,7 +73,6 @@ router.get("/albums/:artistId", (req, res) => {
     res.render("albums", { artistName, albumArr });
   });
 });
-
 router.get("/albums/tracks/:albumId", (req, res) => {
   function convertMsToMins(ms) {
     var minutes = Math.floor(ms / 60000);
@@ -86,7 +81,6 @@ router.get("/albums/tracks/:albumId", (req, res) => {
   }
   let albumId = req.params.albumId;
   let tracksArr = [];
-
   spotifyApi.getAlbumTracks(albumId).then((data) => {
     let items = data.body.items;
     items.forEach((elem) => {

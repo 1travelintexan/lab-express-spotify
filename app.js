@@ -2,6 +2,7 @@
 require("./db");
 
 require("dotenv").config();
+//make sure to add this for heroku
 let PORT = process.env.PORT || 3000;
 const hbs = require("hbs");
 const express = require("express");
