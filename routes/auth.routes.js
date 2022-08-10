@@ -3,6 +3,7 @@ const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const SpotifyWebApi = require("spotify-web-api-node");
 
+//setup for the spotify api
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
