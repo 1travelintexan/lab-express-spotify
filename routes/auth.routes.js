@@ -2,6 +2,8 @@ const router = require("express").Router();
 const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const SpotifyWebApi = require("spotify-web-api-node");
+const { isLoggedIn, isLoggedOut } = require("../middlewares/isLoggedIn");
+const { route } = require("..");
 
 //setup for the spotify api
 const spotifyApi = new SpotifyWebApi({
@@ -20,7 +22,7 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
@@ -36,13 +38,13 @@ router.post("/signup", async (req, res) => {
   await UserModel.create(newUser);
   res.redirect("/login");
 });
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   let loggedInUser = await UserModel.findOne({ email });
-  console.log("fdaf", loggedInUser);
+
   if (!loggedInUser) {
     res.render("auth/login", { message: "Incorrect email, please try again" });
   } else {
@@ -55,15 +57,16 @@ router.post("/login", async (req, res) => {
         message: "Incorrect password, please try again",
       });
     } else {
-      req.session.user = loggedInUser;
+      req.session.user = loggedInUser.toObject();
+      console.log("sees", req.session);
       res.redirect("/home");
     }
   }
 });
-router.get("/home", (req, res) => {
+router.get("/home", isLoggedIn, (req, res) => {
   res.render("home");
 });
-router.get("/artist-search", (req, res) => {
+router.get("/artist-search", isLoggedIn, (req, res) => {
   let searchMusic = req.query.search;
   spotifyApi
     .searchArtists(searchMusic)
@@ -80,7 +83,7 @@ router.get("/artist-search", (req, res) => {
     );
 });
 
-router.get("/albums/:artistId", (req, res) => {
+router.get("/albums/:artistId", isLoggedIn, (req, res) => {
   let artistId = req.params.artistId;
   let albumArr = [];
   spotifyApi.getArtistAlbums(artistId).then((data) => {
@@ -98,7 +101,7 @@ router.get("/albums/:artistId", (req, res) => {
     res.render("albums", { artistName, albumArr });
   });
 });
-router.get("/albums/tracks/:albumId", (req, res) => {
+router.get("/albums/tracks/:albumId", isLoggedIn, (req, res) => {
   function convertMsToMins(ms) {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
@@ -120,6 +123,12 @@ router.get("/albums/tracks/:albumId", (req, res) => {
     });
     res.render("tracks-page", { tracksArr });
   });
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  console.log("logout", req.session);
+  res.redirect("/");
 });
 
 module.exports = router;
