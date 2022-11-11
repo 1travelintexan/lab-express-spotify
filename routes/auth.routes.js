@@ -20,6 +20,10 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+router.get("/signup", (req, res) => {
+  res.render("auth/signup");
+});
+
 router.post("/signup", async (req, res) => {
   const { username, password, email } = req.body;
   const salt = await bcrypt.genSalt(10);
@@ -29,12 +33,32 @@ router.post("/signup", async (req, res) => {
     email,
     password: hash,
   };
-  let newUserDB = await UserModel.create(newUser);
-  console.log("new user", newUserDB);
-  res.redirect("/home");
+  await UserModel.create(newUser);
+  res.redirect("/login");
 });
-router.post("/signin", (req, res) => {
-  console.log("signin here", req.body);
+router.get("/login", (req, res) => {
+  res.render("auth/login");
+});
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  let loggedInUser = await UserModel.findOne({ email });
+  console.log("fdaf", loggedInUser);
+  if (!loggedInUser) {
+    res.render("auth/login", { message: "Incorrect email, please try again" });
+  } else {
+    let doesPasswordMatch = await bcrypt.compare(
+      password,
+      loggedInUser.password
+    );
+    if (!doesPasswordMatch) {
+      res.render("auth/login", {
+        message: "Incorrect password, please try again",
+      });
+    } else {
+      req.session.user = loggedInUser;
+      res.redirect("/home");
+    }
+  }
 });
 router.get("/home", (req, res) => {
   res.render("home");
