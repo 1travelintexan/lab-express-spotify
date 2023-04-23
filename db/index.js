@@ -8,7 +8,7 @@ require("dotenv").config();
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
 const MONGO_URI =
-  `mongodb+srv://Joshua:3rcPDp8a7Wd93uaE@spotify-app.sz14qrx.mongodb.net/tes't` ||
+  `mongodb+srv://Joshua:3rcPDp8a7Wd93uaE@spotify-app.sz14qrx.mongodb.net/test` ||
   "mongodb://127.0.0.1/spotify-app";
 
 mongoose
