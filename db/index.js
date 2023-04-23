@@ -7,7 +7,7 @@ require("dotenv").config();
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-const MONGO_URI = `mongodb+srv://Joshua:3rcPDp8a7Wd93uaE@spotify-app.sz14qrx.mongodb.net/test`;
+const MONGO_URI = `mongodb+srv://Joshua:zYsrDqabkCsDBVio@spotify-app.sz14qrx.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
   .connect(MONGO_URI)
   .then((x) => {
