@@ -26,10 +26,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 // Connects the mongo uri to maintain the same naming structure
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  `mongodb+srv://josh-ify-main-db-07347723f6c:GfFs45TAsJJ3DnY1AQffcJgqfd75EV@prod-us-central1-2.ih9la.mongodb.net/josh-ify-main-db-07347723f6c`;
-
+const MONGO_URI = process.env.MONGO_URI;
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
