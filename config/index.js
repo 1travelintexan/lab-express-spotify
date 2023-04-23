@@ -26,7 +26,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 // Connects the mongo uri to maintain the same naming structure
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1/spotify-app";
+const MONGO_URI = `mongodb+srv://Joshua:3rcPDp8a7Wd93uaE@spotify-app.sz14qrx.mongodb.net/test`;
 
 // Middleware configuration
 module.exports = (app) => {
