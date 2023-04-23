@@ -7,8 +7,9 @@ require("dotenv").config();
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-const MONGO_URI = `
-mongodb+srv://josh-ify-main-db-07347723f6c:GfFs45TAsJJ3DnY1AQffcJgqfd75EV@prod-us-central1-2.ih9la.mongodb.net/josh-ify-main-db-07347723f6c`;
+const MONGO_URI =
+  process.env.MONGO_URI ||
+  `mongodb+srv://josh-ify-main-db-07347723f6c:GfFs45TAsJJ3DnY1AQffcJgqfd75EV@prod-us-central1-2.ih9la.mongodb.net/josh-ify-main-db-07347723f6c`;
 mongoose
   .connect(MONGO_URI)
   .then((x) => {
