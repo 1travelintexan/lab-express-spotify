@@ -3,7 +3,6 @@ const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { isLoggedIn, isLoggedOut } = require("../middlewares/isLoggedIn");
-const { route } = require("..");
 
 //setup for the spotify api
 const spotifyApi = new SpotifyWebApi({
@@ -63,10 +62,10 @@ router.post("/login", async (req, res) => {
     }
   }
 });
-router.get("/home", isLoggedIn, (req, res) => {
+router.get("/home", (req, res) => {
   res.render("home");
 });
-router.get("/artist-search", isLoggedIn, (req, res) => {
+router.get("/artist-search", (req, res) => {
   let searchMusic = req.query.search;
   spotifyApi
     .searchArtists(searchMusic)
@@ -83,7 +82,7 @@ router.get("/artist-search", isLoggedIn, (req, res) => {
     );
 });
 
-router.get("/albums/:artistId", isLoggedIn, (req, res) => {
+router.get("/albums/:artistId", (req, res) => {
   let artistId = req.params.artistId;
   let albumArr = [];
   spotifyApi.getArtistAlbums(artistId).then((data) => {
@@ -101,7 +100,7 @@ router.get("/albums/:artistId", isLoggedIn, (req, res) => {
     res.render("albums", { artistName, albumArr });
   });
 });
-router.get("/albums/tracks/:albumId", isLoggedIn, (req, res) => {
+router.get("/albums/tracks/:albumId", (req, res) => {
   function convertMsToMins(ms) {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
